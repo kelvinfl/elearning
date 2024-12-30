@@ -1,5 +1,5 @@
 
-@extends('layouts.member')
+@extends('layouts.admin')
 @section('content')
 <!-- Main Content -->
 <main class="flex-1 p-8">
@@ -19,7 +19,7 @@
                     </svg>
                 </div>
                 <div class="flex-1">
-                    <h2 class="text-gray-600 text-lg mb-2">Kelas Berlangsung</h2>
+                    <h2 class="text-gray-600 text-lg mb-2">Jumlah Kelas Rekaman</h2>
                     <p class="text-3xl font-semibold text-gray-900">3</p>
                 </div>
             </div>

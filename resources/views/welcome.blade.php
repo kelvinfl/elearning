@@ -29,7 +29,7 @@
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-black">Calon Influencer</span>
             </a>
             <div class="flex items-center lg:order-2">
-                <a href="#" class="text-white dark:text-white hover:bg-hover focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none dark:focus:ring-gray-800 dark:bg-hover dark:hover:bg-primary-900 ">Login Member</a>
+                <a href="{{route('member.index')}}" class="text-white dark:text-white hover:bg-hover focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none dark:focus:ring-gray-800 dark:bg-hover dark:hover:bg-primary-900 ">Login Member</a>
                 <a href="#" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-900 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 ">Jadi Influencer!!</a>
                 <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
@@ -84,7 +84,7 @@
   </section>
 
 
-  <section class="text-gray-600 body-font overflow-hidden" data-aos="fade-up">
+  {{-- <section class="text-gray-600 body-font overflow-hidden" data-aos="fade-up">
     <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-col text-center w-full mb-20">
             <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900" data-aos="fade-down">Pricing</h1>
@@ -151,7 +151,9 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
+
+
 
 
 {{--
@@ -286,6 +288,34 @@
     </div>
 
   </section>
+  <section class="text-gray-600 body-font overflow-hidden" data-aos="fade-up">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-20">
+            <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900" data-aos="fade-down">Kelas Kami</h1>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500" data-aos="fade-down">Pilih kelas terbaik untuk Anda</p>
+        </div>
+        <div class="flex flex-wrap -m-4 justify-center">
+            @foreach($classes as $class)
+            <div class="m-2 xl:w-1/4 md:w-1/2 w-full" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500">
+                <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
+                    <img src="{{ asset('storage/' . $class->thumbnail) }}" alt="{{ $class->name }}" class="w-full h-48 object-cover mb-4">
+                    <h2 class="text-sm tracking-widest title-font mb-1 font-medium">{{ $class->name }}</h2>
+                    <h1 class="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">
+                        @if($class->discount)
+                        <span class="text-sm font-normal text-gray-500 line-through mr-2">Rp.{{ number_format($class->price, 0, ',', '.') }}</span>
+                        <span>Rp.{{ number_format($class->discount, 0, ',', '.') }}</span>
+                        @else
+                        <span>Rp.{{ number_format($class->price, 0, ',', '.') }}</span>
+                        @endif
+                    </h1>
+                    <button class="flex items-center mt-auto text-white bg-primary-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-primary-600 rounded">Daftar Sekarang</button>
+                    <p class="text-xs text-gray-500 mt-3">Bergabunglah sekarang untuk pengalaman belajar yang menyenangkan.</p>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
 
 
  <section class="text-gray-600 body-font">
