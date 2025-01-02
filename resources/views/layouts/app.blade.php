@@ -11,10 +11,10 @@
     <!-- Navbar -->
     <nav class="bg-green-600 p-4">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="/" class="text-white font-bold text-xl">MyApp</a>
+            <a href="/" class="text-white font-bold text-xl">Calon Influencer</a>
             <div>
                 @auth
-                    <a href="{{ route('dashboard') }}" class="text-white">Dashboard</a>
+
                 @else
                     <a href="{{ route('login') }}" class="text-white">Login</a>
                     <a href="{{ route('register') }}" class="ml-4 text-white">Register</a>

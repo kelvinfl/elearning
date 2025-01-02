@@ -1,7 +1,8 @@
 
 @extends('layouts.admin')
 @section('content')
-<form action="{{ route('tambah.kelas.proses') }}" method="POST" enctype="multipart/form-data" class="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
+<form id="tambahKelasForm" action="{{ route('tambah.kelas.proses') }}" method="POST" enctype="multipart/form-data" class="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
+
     @csrf
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="col-span-1">

@@ -13,8 +13,10 @@ class AuthController extends Controller
 {
     public function login()
     {
-        return view('auth.login');
+        $class_id = request('class_id'); // Ambil class_id dari request
+        return view('auth.login', compact('class_id'));
     }
+
 
     function home(){
         $classes = ClassModel::whereNull('deleted_at')->get();
@@ -23,29 +25,24 @@ class AuthController extends Controller
 
     public function loginProses(Request $request)
     {
-        // Mendapatkan kredensial yang dikirimkan
         $credentials = $request->only('email', 'password');
 
-        // Cek apakah login berhasil
         if (Auth::attempt($credentials)) {
-            // Ambil data pengguna yang sedang login
             $user = Auth::user();
+            $class_id = $request->input('class_id'); // Ambil class_id dari form
 
-            // Pengecekan level user
             if ($user->level === 'member') {
-                // Jika levelnya member, arahkan ke halaman member
-                return redirect()->route('member.index');
+                return $class_id
+                    ? redirect()->route('bayar.kelas', ['class_id' => $class_id])
+                    : redirect()->route('member.index');
             } elseif ($user->level === 'admin') {
-                // Jika levelnya admin, arahkan ke halaman admin
                 return redirect()->route('admin.index');
             }
 
-            // Jika level tidak dikenali, logout dan kembalikan pesan kesalahan
             Auth::logout();
             return redirect()->route('login')->withErrors(['email' => 'Unrecognized user level']);
         }
 
-        // Jika login gagal, kembalikan ke halaman login dengan pesan kesalahan
         return back()->withErrors(['email' => 'Invalid credentials'])->withInput();
     }
     public function register()
@@ -84,7 +81,7 @@ class AuthController extends Controller
     $request->session()->regenerateToken();
 
     // Redirect ke halaman login
-    return redirect()->route('login')->with('success', 'Logout berhasil.');
+    return redirect()->route('home')->with('success', 'Logout berhasil.');
     }
 
 }

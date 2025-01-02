@@ -308,7 +308,14 @@
                         <span>Rp.{{ number_format($class->price, 0, ',', '.') }}</span>
                         @endif
                     </h1>
-                    <button class="flex items-center mt-auto text-white bg-primary-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-primary-600 rounded">Daftar Sekarang</button>
+                    <button onclick="window.location.href='{{ route('verifikasi.kelas', ['class_id' => $class->id]) }}';"
+                        class="flex items-center mt-auto text-white bg-primary-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-primary-600 rounded">
+                    Daftar Sekarang
+                </button>
+
+
+
+
                     <p class="text-xs text-gray-500 mt-3">Bergabunglah sekarang untuk pengalaman belajar yang menyenangkan.</p>
                 </div>
             </div>

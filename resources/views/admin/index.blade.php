@@ -5,7 +5,7 @@
 <main class="flex-1 p-8">
     <!-- Welcome Section -->
     <div class="mb-8">
-        <h1 class="text-2xl font-bold text-gray-900">Selamat datang kembali, {{ $name }} </h1>
+        <h1 class="text-2xl font-bold text-gray-900">Selamat datang kembali, {{ $nama }} </h1>
         <p class="text-gray-600">Lanjutkan perjalananmu menjadi influencer.</p>
     </div>
 

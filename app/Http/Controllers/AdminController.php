@@ -10,17 +10,17 @@ class AdminController extends Controller
 {
     function index()    {
         $user = Auth::user(); // Ambil data pengguna yang sedang login
-        $name = $user ? $user->name : 'Guest'; // Ganti 'Guest' jika tidak ada pengguna yang login
+        $nama = $user ? $user->name : 'Guest'; // Ganti 'Guest' jika tidak ada pengguna yang login
 
-        return view('admin.index', compact('name')); // Kirimkan nama pengguna ke view
+        return view('admin.index', compact('nama')); // Kirimkan nama pengguna ke view
     }
 
 
     function tambahKelas(){
         $user = Auth::user(); // Ambil data pengguna yang sedang login
-        $name = $user ? $user->name : 'Guest'; // Ganti 'Guest' jika tidak ada pengguna yang login
+        $nama = $user ? $user->name : 'Guest'; // Ganti 'Guest' jika tidak ada pengguna yang login
 
-        return view('admin.tambahkelas', compact('name')); // Kirimkan nama pengguna ke view
+        return view('admin.tambahkelas', compact('nama')); // Kirimkan nama pengguna ke view
     }
     public function tambahKelasProses(Request $request)
     {
@@ -71,6 +71,12 @@ class AdminController extends Controller
             return back()->with('error', 'Terjadi kesalahan saat menyimpan data kelas.');
         }
     }
+
+    function listKelasBiasa(){
+        $classes = ClassModel::whereNull('deleted_at')->get();
+        return view('admin.listKelasBiasa', compact('classes'));
+    }
+
 
     }
 

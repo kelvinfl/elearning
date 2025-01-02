@@ -20,7 +20,7 @@
                 </div>
                 <div class="flex-1">
                     <h2 class="text-gray-600 text-lg mb-2">Kelas Berlangsung</h2>
-                    <p class="text-3xl font-semibold text-gray-900">3</p>
+                    <p class="text-3xl font-semibold text-gray-900">{{$totalClasses}}</p>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="flex-1">
                     <h2 class="text-gray-600 text-lg mb-2">Kelas Mendatang</h2>
-                    <p class="text-3xl font-semibold text-gray-900">2</p>
+                    <p class="text-3xl font-semibold text-gray-900">0</p>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="flex-1">
                     <h2 class="text-gray-600 text-lg mb-2">Kelas Selesai</h2>
-                    <p class="text-3xl font-semibold text-gray-900">5</p>
+                    <p class="text-3xl font-semibold text-gray-900">0</p>
                 </div>
             </div>
         </div>

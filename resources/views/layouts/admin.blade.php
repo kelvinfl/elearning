@@ -31,7 +31,7 @@
             <div class="flex items-center gap-4">
                 <div class="relative">
                     <button class="flex items-center text-gray-600 hover:text-gray-900">
-                        <span class="mr-2">{{ $name }}</span>
+                        <span class="mr-2"></span>
                         <img src="https://flowbite.com/docs/images/logo.svg" class="w-8 h-8 rounded-full" alt="profil" />
                     </button>
                 </div>
@@ -68,11 +68,11 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
+                        <a href="{{route('list.kelas.biasa')}}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
                             <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
-                            <span class="ml-3">Tambah</span>
+                            <span class="ml-3">List Kelas</span>
                         </a>
                     </li>
                 </ul>
@@ -81,8 +81,73 @@
         @yield('content')
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.5.2/flowbite.min.js"></script>
     @vite('resources/js/app.js')
+    <script>
+        document.getElementById('tambahKelasForm').addEventListener('submit', async function (e) {
+            e.preventDefault(); // Mencegah reload halaman
+
+            const form = e.target;
+            const formData = new FormData(form);
+
+            // Tampilkan loading SweetAlert
+            Swal.fire({
+                title: 'Sedang memproses...',
+                text: 'Mohon tunggu sementara kami menambahkan kelas.',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading(); // Tampilkan animasi loading
+                }
+            });
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                });
+
+                const result = await response.json();
+
+                // Tutup SweetAlert loading
+                Swal.close();
+
+                if (response.ok) {
+                    console.log('Success:', result);
+
+                    // Tampilkan pesan sukses
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: result.message || 'Kelas berhasil ditambahkan.',
+                    });
+                } else {
+                    console.error('Error:', result);
+
+                    // Tampilkan pesan error
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: result.message || 'Terjadi kesalahan saat menambahkan kelas.',
+                    });
+                }
+            } catch (error) {
+                console.error('Unexpected Error:', error);
+
+                // Tutup SweetAlert loading dan tampilkan pesan error
+                Swal.close();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Kesalahan!',
+                    text: 'Terjadi kesalahan tak terduga. Silakan coba lagi.',
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
